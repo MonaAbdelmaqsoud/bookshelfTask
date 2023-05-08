@@ -8,17 +8,19 @@ const bookShelfes= [
     { id: "read", title: "Read" },
   ];
 describe('testing the shelves are rendring correctly', ()=>{
-    test('testing home page', () => {
-        const bookshelfContent = [{id: '', title:''}];
+    it('testing home page', () => {
+        const bookshelfContent = [{id: 'id1', title:'title1', shelf:'Read'}];
         function  onChangeShelfHandler(){}
         render(
             <MemoryRouter>
-                <BookShelf shelfData={bookShelfes[0]} books={bookshelfContent} onChangeShelf={onChangeShelfHandler}/>
+                <BookShelf shelfData={bookShelfes[2]} />
             </MemoryRouter>
         )
 
-        const element = screen.getByRole('heading', {name: 'Currently Reading'})
+        const element = screen.getByRole('heading', {name: 'Read'})
         expect(element).toBeInTheDocument;
+
+        
     });
 
 

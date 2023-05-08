@@ -1,15 +1,17 @@
-import React from "react";
+import React, {useContext} from "react";
 import bookType from "../models/book";
+import { booksContext } from "../store/books-context";
 
 interface bookInfo {
   book: bookType; 
-  onChangeShelf: (book: bookType, shelfName: string) => void;
 }
 
 const BookShelfChanger:React.FC<bookInfo> = (props) => {
+
+  const booksCtx = useContext(booksContext);
   
   const shelfChangeHandler = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    props.onChangeShelf(props.book, event.target.value);
+    booksCtx.changeShelfHandler(props.book, event.target.value);
   }
 
   return (

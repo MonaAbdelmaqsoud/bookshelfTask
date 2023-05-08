@@ -1,19 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Book from "../components/Book";
 import bookType from "../models/book";
+import { booksContext } from "../store/books-context";
 
-interface searchData {
-  onSearch: (query: string) => void;
-  searchResult: bookType[];
-  onChangeShelfHandler: (book: any, shelfName: string) => void;
-  books: bookType[];
-}
-
-const SearchPage: React.FC<searchData> = (props) => {
+const SearchPage: React.FC = () => {
+  const booksCtx = useContext(booksContext);
   
   const queryHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    props.onSearch(event.target.value);
+    booksCtx.searchQueryHandler(event.target.value);
   };
 
   return (
@@ -32,9 +27,9 @@ const SearchPage: React.FC<searchData> = (props) => {
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
-          {props.searchResult.length !== 0 ? (
-            props.searchResult.map((book: bookType) => {
-              const bookFound = props.books.find(
+          {booksCtx.searchResultBooks.length !== 0 ? (
+            booksCtx.searchResultBooks.map((book: bookType) => {
+              const bookFound = booksCtx.books.find(
                 (searchbook: bookType) => searchbook.id === book.id
               );
 
@@ -45,7 +40,6 @@ const SearchPage: React.FC<searchData> = (props) => {
                 <Book
                   key={book.id}
                   book={book}
-                  onChangeShelf={props.onChangeShelfHandler}
                 />
               );
             })

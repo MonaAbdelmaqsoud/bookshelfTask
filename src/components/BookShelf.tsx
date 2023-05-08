@@ -1,15 +1,18 @@
 import Book from "./Book";
 import bookType from "../models/book";
 import Shelve from "../models/shelvs";
+import { useContext } from "react";
+import { booksContext } from "../store/books-context";
 
 interface bookshelfContent {
-  books: bookType[];
   shelfData: Shelve;
-  onChangeShelf: (book: bookType, shelfName: string) => void;
 }
 const BookShelf: React.FC<bookshelfContent> = (props) => {
-  const filteredList = props.books.filter(
-    (book: any) => book.shelf === props.shelfData.id
+
+  const booksCtx = useContext(booksContext);
+
+  const filteredList = booksCtx.books.filter(
+    (book: bookType) => book.shelf === props.shelfData.id
   );
 
   return (
@@ -19,7 +22,7 @@ const BookShelf: React.FC<bookshelfContent> = (props) => {
 
         <ol className="books-grid">
           {filteredList.map((book: bookType) => (
-            <Book key={book.id} book={book} onChangeShelf={props.onChangeShelf} />
+            <Book key={book.id} book={book} />
           ))}
         </ol>
         

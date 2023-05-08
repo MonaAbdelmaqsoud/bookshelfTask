@@ -2,9 +2,7 @@ import bookType from "../models/book";
 import BookShelfChanger from "./BookShelfChanger";
 
 interface bookInfo {
-
   book: bookType; 
-  onChangeShelf: (book: bookType, shelfName: string) => void;
 }
 const Book:React.FC<bookInfo> = (props) => {
 
@@ -26,7 +24,7 @@ const Book:React.FC<bookInfo> = (props) => {
                 `url(${bookImage? bookImage.thumbnail : ''})`,
             }}
           ></div>
-          <BookShelfChanger book={props.book} onChangeShelf={props.onChangeShelf}/>
+          <BookShelfChanger book={props.book} />
         </div>
         <div className="book-title">{bookTitle}</div>
         <div className="book-authors">{bookAuthors? bookAuthors : 'no authors'}</div>

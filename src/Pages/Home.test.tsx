@@ -5,10 +5,10 @@ import { MemoryRouter } from "react-router-dom";
 const books = [{ id: "22", title: "hh" }];
 function onChangeShelfHandler() {}
 
-test("testing home page", () => {
+it("testing home page", () => {
   render(
     <MemoryRouter>
-      <HomePage books={books} onChangeShelfHandler={onChangeShelfHandler} />
+      <HomePage />
     </MemoryRouter>
   );
 

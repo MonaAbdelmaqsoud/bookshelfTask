@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import BookShelf from "../components/BookShelf";
-import bookType from "../models/book";
 import Shelve from "../models/shelvs";
 
-interface homePageData{
-  books: bookType[];
-  onChangeShelfHandler: (book: any, shelfName: string)=>void;
-}
+
 
 const bookShelfes:Shelve[] = [
   { id: "currentlyReading", title: "Currently Reading" },
@@ -15,7 +11,7 @@ const bookShelfes:Shelve[] = [
   { id: "read", title: "Read" },
 ];
 
-const HomePage:React.FC<homePageData> = (props) => {
+const HomePage:React.FC = () => {
 
   return (
     <div className="list-books">
@@ -23,7 +19,7 @@ const HomePage:React.FC<homePageData> = (props) => {
         <h1>MyReads</h1>
       </div>
       {bookShelfes.map((shelf) => (
-        <BookShelf key={shelf.id} shelfData={shelf} books={props.books} onChangeShelf={props.onChangeShelfHandler}/>
+        <BookShelf key={shelf.id} shelfData={shelf} />
       ))}
       <div className="open-search">
         <Link to="/search">Search For A book</Link>

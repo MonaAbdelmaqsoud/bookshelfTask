@@ -9,13 +9,13 @@ describe('testing routes', () =>{
         const searchResult = [{id: '22', title:'hh'}];
         function  onChangeShelfHandler(){}
         function  onSearch(){}
-    test('testing the HomePage Route',()=>{
+    it('testing the HomePage Route',()=>{
         
         render(
             <MemoryRouter initialEntries={['/']}>
                 <Routes>
-                    <Route path='/' element={<HomePage books={books} onChangeShelfHandler={onChangeShelfHandler}/>}/>
-                    <Route path='/search' element={<SearchPage books={books} onChangeShelfHandler={onChangeShelfHandler} onSearch={onSearch} searchResult={searchResult}/>}/>
+                    <Route path='/' element={<HomePage />}/>
+                    <Route path='/search' element={<SearchPage/>}/>
                 </Routes>
             </MemoryRouter>
         );
@@ -24,13 +24,13 @@ describe('testing routes', () =>{
         expect(searchLink).toBeInTheDocument;
     })
 
-    test('testing the SearchPage Route',()=>{
+    it('testing the SearchPage Route',()=>{
         
         render(
             <MemoryRouter initialEntries={['/search']}>
                 <Routes>
-                    <Route path='/' element={<HomePage books={books} onChangeShelfHandler={onChangeShelfHandler}/>}/>
-                    <Route path='/search' element={<SearchPage books={books} onChangeShelfHandler={onChangeShelfHandler} onSearch={onSearch} searchResult={searchResult}/>}/>
+                    <Route path='/' element={<HomePage />}/>
+                    <Route path='/search' element={<SearchPage />}/>
                 </Routes>
             </MemoryRouter>
         );
