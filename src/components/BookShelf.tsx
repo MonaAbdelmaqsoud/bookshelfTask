@@ -2,16 +2,16 @@ import Book from "./Book";
 import bookType from "../models/book";
 import Shelve from "../models/shelvs";
 import { useContext } from "react";
-import { booksContext } from "../store/books-context";
+import { bookContext } from "../store/book-context";
 
 interface bookshelfContent {
   shelfData: Shelve;
 }
 const BookShelf: React.FC<bookshelfContent> = (props) => {
 
-  const booksCtx = useContext(booksContext);
+  const {books} = useContext(bookContext);
 
-  const filteredList = booksCtx.books.filter(
+  const filteredList = books.filter(
     (book: bookType) => book.shelf === props.shelfData.id
   );
 

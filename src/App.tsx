@@ -2,6 +2,7 @@ import "./App.css";
 import SearchPage from "./Pages/Search";
 import HomePage from "./Pages/Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import React from "react";
 
 function App() {
 

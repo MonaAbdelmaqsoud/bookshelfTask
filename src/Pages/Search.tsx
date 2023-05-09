@@ -1,15 +1,33 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Book from "../components/Book";
 import bookType from "../models/book";
-import { booksContext } from "../store/books-context";
+import { bookContext } from "../store/book-context";
+import { search } from "../util/BooksApi";
 
 const SearchPage: React.FC = () => {
-  const booksCtx = useContext(booksContext);
-  
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const { searchResultBooks, setSearchResultBooks, books } =
+    useContext(bookContext);
+
   const queryHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    booksCtx.searchQueryHandler(event.target.value);
+    setSearchQuery(event.target.value);
   };
+
+  useEffect(() => {
+    if (searchQuery) {
+      search(searchQuery, 20).then((data: bookType[]) => {
+        if (data.length > 0) {
+          setSearchResultBooks(data);
+        } else {
+          setSearchResultBooks([]);
+        }
+      });
+    } else {
+      setSearchResultBooks([]);
+    }
+  }, [searchQuery]);
 
   return (
     <div className="search-books">
@@ -27,21 +45,15 @@ const SearchPage: React.FC = () => {
       </div>
       <div className="search-books-results">
         <ol className="books-grid">
-          {booksCtx.searchResultBooks.length !== 0 ? (
-            booksCtx.searchResultBooks.map((book: bookType) => {
-              const bookFound = booksCtx.books.find(
+          {searchResultBooks.length !== 0 ? (
+            searchResultBooks.map((book: bookType) => {
+              const bookFound = books.find(
                 (searchbook: bookType) => searchbook.id === book.id
               );
-
               if (bookFound) {
                 book.shelf = bookFound.shelf;
               }
-              return (
-                <Book
-                  key={book.id}
-                  book={book}
-                />
-              );
+              return <Book key={book.id} book={book} />;
             })
           ) : (
             <div>No Books Found</div>
