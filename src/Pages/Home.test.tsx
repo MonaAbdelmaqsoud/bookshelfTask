@@ -2,18 +2,28 @@ import { render, screen } from "@testing-library/react";
 import HomePage from "./Home";
 import { MemoryRouter } from "react-router-dom";
 
-const books = [{ id: "22", title: "hh" }];
-function onChangeShelfHandler() {}
+describe("home page tests", ()=>{
+  it("testing home page", () => {
+    render(
+      <MemoryRouter>
+        <HomePage />
+      </MemoryRouter>
+    );
+  
+    const element = screen.getByText("MyReads");
+    expect(element).toBeInTheDocument;
+  });
 
-it("testing home page", () => {
-  render(
-    <MemoryRouter>
-      <HomePage />
-    </MemoryRouter>
-  );
-
-  const element = screen.getByText("MyReads");
-  expect(element).toBeInTheDocument;
-});
+  it("testing that shelves are mapped correctly", () => {
+    render(
+      <MemoryRouter>
+        <HomePage />
+      </MemoryRouter>
+    );
+  
+    const element = screen.getByTestId('shelves');
+    expect(element.childElementCount).toBe(3);
+  });
+})
 
 

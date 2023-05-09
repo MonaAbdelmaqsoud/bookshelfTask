@@ -10,11 +10,12 @@ const Book:React.FC<bookInfo> = (props) => {
   const bookTitle = props.book.title;
   const bookAuthors = props.book.authors;
 
+  console.log(props.book);
   return (
     <li>
       <div className="book">
         <div className="book-top">
-          <div
+          <div data-testid="book-image"
             className="book-cover"
             style={{
               width: 128,
@@ -26,8 +27,8 @@ const Book:React.FC<bookInfo> = (props) => {
           ></div>
           <BookShelfChanger book={props.book} />
         </div>
-        <div className="book-title">{bookTitle}</div>
-        <div className="book-authors">{bookAuthors? bookAuthors : 'no authors'}</div>
+        <div data-testid="book-title" className="book-title">{bookTitle}</div>
+        <div data-testid="book-authors" className="book-authors">{bookAuthors? bookAuthors : 'no authors'}</div>
       </div>
     </li>
   );

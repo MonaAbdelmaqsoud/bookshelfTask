@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 it('testing home page', () => {
     const bookInfo = {id: '22', title:'hh', shelf: 'read'};
-    function  onChangeShelfHandler(){}
+
     render(
         <MemoryRouter>
             <BookShelfChanger book={bookInfo} />

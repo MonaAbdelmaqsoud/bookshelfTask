@@ -5,10 +5,6 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 describe('testing routes', () =>{
 
-    const books = [{id: '22', title:'hh'}];
-        const searchResult = [{id: '22', title:'hh'}];
-        function  onChangeShelfHandler(){}
-        function  onSearch(){}
     it('testing the HomePage Route',()=>{
         
         render(
