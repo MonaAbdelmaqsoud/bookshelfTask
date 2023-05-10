@@ -1,5 +1,5 @@
 import {render, screen} from '@testing-library/react';
-import BookShelfChanger from './BookShelfChanger';
+import BookShelfChanger from '../components/BookShelfChanger';
 import { MemoryRouter } from 'react-router-dom';
 
 it('testing home page', () => {

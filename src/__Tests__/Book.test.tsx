@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import Book from "./Book";
+import Book from "../components/Book";
 
 describe("testing the bookElement", () => {
   it("testing the Book ifo are shown correctly", () => {

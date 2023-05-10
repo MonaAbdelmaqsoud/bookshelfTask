@@ -32,11 +32,12 @@ const SearchPage: React.FC = () => {
   return (
     <div className="search-books">
       <div className="search-books-bar">
-        <Link to="/" className="close-search">
+        <Link data-testid="search" to="/" className="close-search">
           Go back to home
         </Link>
         <div className="search-books-input-wrapper">
           <input
+            data-testid="input"
             type="text"
             placeholder="Search by title, author, or ISBN"
             onChange={queryHandler}

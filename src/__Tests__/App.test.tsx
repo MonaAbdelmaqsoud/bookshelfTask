@@ -1,6 +1,6 @@
 import {render, screen} from '@testing-library/react';
-import HomePage from './Pages/Home';
-import SearchPage from './Pages/Search';
+import HomePage from '../Pages/Home';
+import SearchPage from '../Pages/Search';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 describe('testing routes', () =>{

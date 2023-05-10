@@ -6,16 +6,13 @@ type BooksContextObj = {
   setBooks: (books: bookType[]) => void;
   searchResultBooks: bookType[];
   setSearchResultBooks: (books: bookType[]) => void;
-  
-
 };
 
 export const bookContext = React.createContext<BooksContextObj>({
   books: [],
   setBooks: ([]) => {},
   searchResultBooks: [],
-  setSearchResultBooks:([])=>{},
-
+  setSearchResultBooks: ([]) => {},
 });
 
 interface providerProps {
@@ -32,13 +29,11 @@ const BookContextProvider: React.FC<providerProps> = (props) => {
     searchResultBooks,
     setBooks,
     setSearchResultBooks,
-
-
   };
   return (
-    <bookContext.Provider value={contaxtValue}>
-      {props.children}
-    </bookContext.Provider>
+      <bookContext.Provider value={contaxtValue}>
+        {props.children}
+      </bookContext.Provider>
   );
 };
 
